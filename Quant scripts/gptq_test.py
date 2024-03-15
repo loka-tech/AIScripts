@@ -52,9 +52,6 @@ model = AutoGPTQForCausalLM.from_quantized(quantized_model_dir,
         use_triton=args.use_triton,
         quantize_config=quantize_config)
 
-# Prevent printing spurious transformers error when using pipeline with AutoGPTQ
-logging.set_verbosity(logging.CRITICAL)
-
 prompt = "Tell me about AI"
 prompt_template=f'''### Human: {prompt}
 ### Assistant:'''
