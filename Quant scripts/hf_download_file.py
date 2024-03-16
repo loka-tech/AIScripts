@@ -15,7 +15,7 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s [%(name)s] %(message)s", level=logging.INFO, datefmt="%Y-%m-%d %H:%M:%S"
 )
 
-def run_hub_download(repo_id, filename, local_dir, branch="main", token=True, local_dir_use_symlinks="auto"):
+def run_hub_download(repo_id, filename, local_dir, branch="main", local_dir_use_symlinks="auto"):
     from huggingface_hub import hf_hub_download
     retry = True
     try_count = 0
@@ -26,8 +26,7 @@ def run_hub_download(repo_id, filename, local_dir, branch="main", token=True, lo
                             repo_id=repo_id,
                             local_dir=local_dir,
                             revision=branch,
-                            local_dir_use_symlinks=local_dir_use_symlinks,
-                            token=token)
+                            local_dir_use_symlinks=local_dir_use_symlinks)
             retry = False
         except Exception as e:
             logger.error(f"Exception: {e}")
