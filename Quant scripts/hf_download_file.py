@@ -26,7 +26,8 @@ def run_hub_download(repo_id, filename, local_dir, branch="main", token=True, lo
                             repo_id=repo_id,
                             local_dir=local_dir,
                             revision=branch,
-                            local_dir_use_symlinks=local_dir_use_symlinks)
+                            local_dir_use_symlinks=local_dir_use_symlinks,
+                            token=token)
             retry = False
         except Exception as e:
             logger.error(f"Exception: {e}")
@@ -67,6 +68,7 @@ if __name__ == "__main__":
     parser.add_argument('filename', type=str, help='Model folder')
     parser.add_argument('model_folder', type=str, help='Model folder')
     parser.add_argument('--cache_dir', type=str, help='Set the HF cache folder')
+    parser.add_argument('--token', type=str, help='Use custom token')
     parser.add_argument('--branch', type=str, default="main", help='Branch to download from')
     parser.add_argument('--symlinks', type=str, choices=['true', 'false', 'auto'], default="auto", help='Set to download to cache dir and symlink to target folder')
     parser.add_argument('--fast', '-f', type=str, default="1", help='Set to 1 to download fast (HF_HUB_ENABLE_HF_TRANSFER)')
