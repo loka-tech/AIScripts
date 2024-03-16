@@ -16,13 +16,13 @@ logging.basicConfig(
 )
 
 def run_hub_download(repo_id, filename, local_dir, branch="main", token=True, local_dir_use_symlinks="auto"):
-    from huggingface_hub import hf_hub_download
+    from huggingface_hub import snapshot_download
     retry = True
     try_count = 0
     max_tries = 5
     while retry and try_count < max_tries:
         try:
-            hf_hub_download(token=token,
+            snapshot_download(token=token,
                             filename=filename,
                             repo_id=repo_id,
                             local_dir=local_dir,
